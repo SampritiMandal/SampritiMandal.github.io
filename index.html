@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sampriti Mandal — Astrophysics</title>
+<meta name="description" content="Sampriti Mandal — research in high-energy and relativistic astrophysics: AGN jets, black hole accretion, tidal disruption events, and multimessenger astrophysics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0E14;
+    --panel: #12161F;
+    --panel-border: #1F2531;
+    --text: #EDEFF2;
+    --text-dim: #8B93A7;
+    --text-dimmer: #5B6274;
+    --gold: #E8A33D;
+    --cyan: #4FC3D9;
+    --max: 920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold); color:#0B0E14;}
+  a{color:var(--cyan); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-weight:500; letter-spacing:-0.01em; margin:0;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--gold); display:inline-block;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,14,20,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--panel-border);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .nav-name{font-family:'Fraunces', serif; font-size:17px; font-weight:600; color:var(--text);}
+  .nav-links{display:flex; gap:26px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    color:var(--text-dim); font-size:13.5px; font-family:'IBM Plex Mono', monospace;
+    text-decoration:none; letter-spacing:0.02em;
+  }
+  .nav-links a:hover{color:var(--gold);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--panel-border); color:var(--text); padding:8px 10px; border-radius:6px; font-family:'IBM Plex Mono', monospace; font-size:12px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:88px 0 64px; position:relative; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:end;}
+  .hero h1{font-size:clamp(40px, 6vw, 62px); line-height:1.04; margin:18px 0 22px; color:var(--text);}
+  .hero h1 em{font-style:italic; color:var(--gold);}
+  .hero .role{font-size:16px; color:var(--text-dim); max-width:46ch; margin-bottom:8px;}
+  .hero .tagline{font-size:16.5px; color:var(--text-dim); max-width:50ch; margin-top:14px;}
+  .hero-links{display:flex; gap:14px; flex-wrap:wrap; margin-top:30px;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; padding:11px 18px;
+    border-radius:7px; border:1px solid var(--panel-border); color:var(--text);
+    display:inline-flex; align-items:center; gap:8px; transition:border-color .15s, color .15s;
+  }
+  .btn:hover{border-color:var(--cyan); color:var(--cyan); text-decoration:none;}
+  .btn.primary{background:var(--gold); border-color:var(--gold); color:#0B0E14; font-weight:500;}
+  .btn.primary:hover{border-color:var(--gold); color:#0B0E14; opacity:0.9;}
+
+  /* light curve svg */
+  .flare-wrap{width:100%; padding-top:10px;}
+  .flare-wrap svg{width:100%; height:auto; display:block;}
+  .flare-caption{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-dimmer); margin-top:8px; display:flex; justify-content:space-between;}
+  #flareLine{stroke-dasharray:600; stroke-dashoffset:600; animation:draw 2.6s ease-out forwards .3s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  #flareDot{opacity:0; animation:appear .6s ease-out forwards 2.6s;}
+  @keyframes appear{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    #flareLine{animation:none; stroke-dashoffset:0;}
+    #flareDot{animation:none; opacity:1;}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:76px 0; border-top:1px solid var(--panel-border);}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:10px;}
+  .section-head h2{font-size:28px;}
+  .section-num{font-family:'IBM Plex Mono', monospace; color:var(--text-dimmer); font-size:13px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-text{font-size:17px; color:var(--text-dim); max-width:66ch;}
+  .about-text strong{color:var(--text); font-weight:500;}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{position:relative; padding-left:28px; border-left:1px solid var(--panel-border);}
+  .t-item{position:relative; padding-bottom:44px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-33px; top:6px; width:9px; height:9px;
+    border-radius:50%; background:var(--bg); border:2px solid var(--cyan);
+  }
+  .t-item.flare::before{border-color:var(--gold); box-shadow:0 0 0 4px rgba(232,163,61,0.12);}
+  .t-date{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--gold); letter-spacing:0.03em;}
+  .t-title{font-family:'Fraunces', serif; font-size:20px; font-weight:500; margin:6px 0 4px; color:var(--text);}
+  .t-sup{font-size:13.5px; color:var(--text-dimmer); margin-bottom:10px;}
+  .t-desc{font-size:15px; color:var(--text-dim); max-width:64ch;}
+  .t-desc a{font-size:13px;}
+
+  /* ---------- PROJECTS ---------- */
+  .proj-card{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:10px;
+    padding:26px 28px;
+  }
+  .proj-card h3{font-size:19px; margin-bottom:6px; color:var(--text);}
+  .proj-meta{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dimmer); margin-bottom:14px;}
+  .proj-card ul{margin:0; padding-left:20px; color:var(--text-dim); font-size:14.5px;}
+  .proj-card li{margin-bottom:8px;}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-row{display:flex; justify-content:space-between; gap:20px; padding:20px 0; border-bottom:1px solid var(--panel-border); flex-wrap:wrap;}
+  .edu-row:last-child{border-bottom:none;}
+  .edu-left h3{font-size:17px; color:var(--text); margin-bottom:4px;}
+  .edu-left .sub{font-size:13.5px; color:var(--text-dimmer);}
+  .edu-right{text-align:right; font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--cyan); white-space:nowrap;}
+  .edu-courses{font-size:13.5px; color:var(--text-dimmer); margin-top:16px; max-width:70ch;}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  .skill-card .label{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--text-dimmer); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--text-dim);
+    border:1px solid var(--panel-border); border-radius:5px; padding:5px 10px;
+  }
+
+  /* ---------- WORKSHOPS / AWARDS ---------- */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .list-plain{list-style:none; margin:0; padding:0;}
+  .list-plain li{padding:12px 0; border-bottom:1px solid var(--panel-border); font-size:14.5px; color:var(--text-dim); display:flex; justify-content:space-between; gap:16px;}
+  .list-plain li:last-child{border-bottom:none;}
+  .list-plain .name{color:var(--text);}
+  .list-plain .when{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dimmer); white-space:nowrap;}
+  .col-label{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--text-dimmer); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:16px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact-box{
+    background:var(--panel); border:1px solid var(--panel-border); border-radius:12px;
+    padding:44px; text-align:center;
+  }
+  .contact-box h2{font-size:26px; margin-bottom:12px;}
+  .contact-box p{color:var(--text-dim); max-width:50ch; margin:0 auto 26px;}
+  .contact-links{display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+  footer{padding:32px 0; text-align:center;}
+  footer p{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--text-dimmer);}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr; gap:32px;}
+    .skills-grid{grid-template-columns:1fr;}
+    .two-col{grid-template-columns:1fr;}
+    .edu-right{text-align:left;}
+    section{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-name">Sampriti Mandal</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#more">Workshops</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">High-Energy &amp; Relativistic Astrophysics</div>
+        <h1>Sampriti<br><em>Mandal</em></h1>
+        <p class="role">5th Year BS-MS Student, Department of Physical Sciences, IISER Kolkata</p>
+        <p class="tagline">Studying black hole accretion flows, AGN jets, and tidal disruption events — connecting relativistic hydrodynamics with multimessenger observation, from gamma rays to neutrinos.</p>
+        <div class="hero-links">
+          <a class="btn primary" href="mailto:sm22ms123@iiserkol.ac.in">Email me</a>
+          <a class="btn" href="Sampriti_Mandal_CV.pdf" target="_blank" rel="noopener">Download CV ↓</a>
+          <a class="btn" href="https://linkedin.com/in/sampriti-mandal-20j" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="flare-wrap" aria-hidden="true">
+        <svg viewBox="0 0 360 180" fill="none">
+          <line x1="0" y1="150" x2="360" y2="150" stroke="#1F2531" stroke-width="1"/>
+          <path id="flareLine" d="M0,140 C40,138 70,142 100,138 C130,134 145,60 165,32 C180,12 190,10 200,30 C215,58 225,120 250,132 C280,146 320,140 360,138"
+                stroke="#4FC3D9" stroke-width="2" />
+          <circle id="flareDot" cx="190" cy="18" r="4.5" fill="#E8A33D"/>
+        </svg>
+        <div class="flare-caption">
+          <span>FERMI-LAT · 18-YR LIGHT CURVE</span>
+          <span>γ-RAY FLARE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><h2>About</h2><span class="section-num mono">01</span></div>
+    <p class="about-text">
+      I work at the intersection of <strong>relativistic astrophysics</strong> and <strong>computation</strong> —
+      building and applying general relativistic hydrodynamic (GRHD) simulations, structural jet models, and
+      multi-wavelength statistical analysis to understand how black holes accrete, launch jets, and occasionally
+      disrupt stars. My interests span AGN jets and jet launching, black hole accretion flows, tidal disruption
+      events, and the electromagnetic and neutrino signatures that connect them to multimessenger astronomy.
+      I'm currently completing my BS-MS dual degree in Physics at IISER Kolkata, and beginning my master's thesis
+      at the National Centre for Radio Astrophysics (NCRA), Pune.
+    </p>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head"><h2>Research Experience</h2><span class="section-num mono">02</span></div>
+    <div class="timeline">
+
+      <div class="t-item flare">
+        <div class="t-date">AUG 2026 — PRESENT</div>
+        <div class="t-title">Linking γ-Ray Flares to Jet Structural Evolution in Blazars</div>
+        <div class="t-sup">Master's Thesis · Supervised by Prof. Preeti Kharb, National Centre for Radio Astrophysics (NCRA), Pune</div>
+        <div class="t-desc">Studying multi-wavelength and VLBI signatures of magnetic reconnection-driven γ-ray flares in blazar jets. Combining statistical analysis of 18-year Fermi-LAT light curves (skewness / state-transition tests around large flares) with MOJAVE VLBA archival data on jet component ejections, multi-wavelength light curves (VLBA, VLA, GMRT), and a magnetic plasmoid-merging simulation in PLUTO, comparing structural evolution between FSRQs and BL Lac objects.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-date">JUN 2026 — PRESENT</div>
+        <div class="t-title">Little Red Dots as Delayed Choked-Jet Tidal Disruption Events</div>
+        <div class="t-sup">Supervised by Prof. Mukul Bhattacharya, DAASE, IIT Indore</div>
+        <div class="t-desc">Investigating whether Little Red Dots — a population of compact, high-redshift (z ≈ 4–8) JWST sources with debated physical origin — can be explained within the delayed choked-jet TDE framework. Built a dynamical jet-cocoon-debris model to determine when a jet breaks out versus stays trapped, as a function of black hole mass, jet luminosity, and launch delay. Predicted high-energy neutrino and forward/reverse-shock synchrotron signatures and tested detectability against IceCube, JWST/NIRCam, VLA, ALMA, and Chandra sensitivities.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-date">6–24 JUL 2026</div>
+        <div class="t-title">Study of Martian Atmospheres: Winds and Wave Characterization</div>
+        <div class="t-sup">Supervised by Pedro Machado, Francisco Brasil, João Dias — Instituto de Astrofísica e Ciências do Espaço, Lisbon</div>
+        <div class="t-desc">Worked on the Mars component of a joint Venus–Mars atmospheric gravity wave study using OMEGA/Mars Express spectral cube data and HRSC imagery. Used omegapy and QGIS to detect and characterize wave packets and background wind fields from cloud tracking. Contributed to a group presentation on morphological characterization and wind-speed measurements.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-date">JUN 2025 — DEC 2025</div>
+        <div class="t-title">General Relativistic Hydrodynamic Simulation Code</div>
+        <div class="t-sup">Supervised by Dr. Sudip K. Garain, CESSI, IISER Kolkata</div>
+        <div class="t-desc">Solved the relativistic hydrodynamic equations analytically for an ideal equation of state, and implemented the conserved-to-primitive variable conversion (D, S_j, τ → ρ, v_j, P) in code. Developed a GRHD code for studying advective, sub-Keplerian accretion flow onto black holes for different equations of state.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-date">DEC 2024</div>
+        <div class="t-title">Roche Potential and Roche Mass Transfer</div>
+        <div class="t-sup">Supervised by Dr. Sudip K. Garain, CESSI, IISER Kolkata</div>
+        <div class="t-desc">Derived the equations of motion for a test mass in a binary star system and simulated its trajectory using RK45 integration in Python, analyzing the stable and unstable Lagrange equilibrium points.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-date">MAY 2024 — JUL 2024</div>
+        <div class="t-title">Beam Shaping using SLM</div>
+        <div class="t-sup">Supervised by Dr. Arijit De, IISER Mohali</div>
+        <div class="t-desc">Engineered an experiment to modify a laser's spatial profile using a Spatial Light Modulator, generating an Airy-Gaussian beam from a Gaussian laser source. Worked with a 1920×1152 liquid crystal on silicon SLM and aligned precision optical components.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-date">DEC 2023 — JAN 2024</div>
+        <div class="t-title">Celestial Mechanics Reading Project</div>
+        <div class="t-sup">Independent study</div>
+        <div class="t-desc">Explored celestial mechanics using classical gravitational theory to model planetary dynamics and solar system evolution, later expanded to include general relativity for orbital mechanics.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><h2>Academic Projects</h2><span class="section-num mono">03</span></div>
+    <div class="proj-card">
+      <h3>Structural and Morphological Analysis of Galaxies using Image Statistics</h3>
+      <div class="proj-meta">SS4202: Space Astronomy (Lab) Term Project · IISER Kolkata · with Navonila Karmakar · May 2026</div>
+      <ul>
+        <li>Performed quantitative morphological classification of NGC 2967 (Sc), NGC 3351 (SBb), and NGC 3379 (E1) using SDSS DR17 g, r, i imaging — combining surface brightness profile fitting, CAS parameters, isophote analysis, and Fourier structural decomposition; all eleven diagnostics consistently classified the three galaxies.</li>
+        <li>Developed 2D FFT and radial (annular) Fourier analysis routines; performed correlation and statistical analysis across diagnostics; implemented the radial structural decomposition and final morphological classification summary; co-drafted the manuscript.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head"><h2>Education</h2><span class="section-num mono">04</span></div>
+
+    <div class="edu-row">
+      <div class="edu-left">
+        <h3>Indian Institute of Science Education and Research (IISER), Kolkata</h3>
+        <div class="sub">BS-MS Dual Degree, Major in Physics · CGPA 8.03</div>
+      </div>
+      <div class="edu-right">2022 – 2027<br>Exp. graduation 06/2027</div>
+    </div>
+
+    <div class="edu-row">
+      <div class="edu-left">
+        <h3>Higher Secondary (Class 12), WBCHSE</h3>
+        <div class="sub">Nagari Shudhangshu Badani Siksha Niketan · 94%</div>
+      </div>
+      <div class="edu-right">2019 – 2021</div>
+    </div>
+
+    <div class="edu-row">
+      <div class="edu-left">
+        <h3>Secondary (Class 10), WBBSE</h3>
+        <div class="sub">Kaligati Smriti Nari Shiksha Niketan · 96.2%</div>
+      </div>
+      <div class="edu-right">2013 – 2019</div>
+    </div>
+
+    <p class="edu-courses"><span class="col-label">Relevant coursework</span><br>
+    Classical Mechanics, Quantum Mechanics, Mathematical Physics, Electrodynamics, Optics Theory &amp; Lab, Statistical Physics, General Theory of Relativity and Cosmology, Modern Physics Lab, Condensed Matter Physics Theory &amp; Lab, Introductory Astrophysics, Computational Physics, Electronics Lab &amp; Theory, Nuclear Physics Lab, Artificial Intelligence for Data Science, Space Astronomy, Fluid and Magnetohydrodynamics, Advanced Optics Lab.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><h2>Skills</h2><span class="section-num mono">05</span></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="label">Technical</div>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">Linux</span><span class="chip">C</span>
+          <span class="chip">MATLAB</span><span class="chip">gnuplot</span><span class="chip">Mathematica</span>
+          <span class="chip">Fortran</span><span class="chip">astropy</span><span class="chip">omegapy</span>
+          <span class="chip">QGIS</span><span class="chip">PLUTO (beginner)</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="label">Lab &amp; Instrumentation</div>
+        <div class="chip-row">
+          <span class="chip">Optical alignment</span><span class="chip">Laser handling</span>
+          <span class="chip">SLM beam shaping</span><span class="chip">Nuclear physics lab</span>
+          <span class="chip">Condensed matter lab</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="label">Languages</div>
+        <div class="chip-row">
+          <span class="chip">English</span><span class="chip">Bengali</span><span class="chip">Hindi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="more">
+  <div class="wrap">
+    <div class="section-head"><h2>Workshops &amp; Honours</h2><span class="section-num mono">06</span></div>
+    <div class="two-col">
+      <div>
+        <div class="col-label">Conferences, Workshops &amp; Seminars</div>
+        <ul class="list-plain">
+          <li><span class="name">BRICS Astronomy Data Analytics Training Course, SAAO</span><span class="when">May–Jul 2026</span></li>
+          <li><span class="name">PLUTO/OpenGadget3 Symposium, MPIA Heidelberg (online)</span><span class="when">Jun 2026</span></li>
+          <li><span class="name">GW Open Data Workshop</span><span class="when">Apr 2026</span></li>
+          <li><span class="name">Beyond LIGO-India: Deci-Hz GW Space Mission, IISER Kolkata</span><span class="when">Mar 2026</span></li>
+          <li><span class="name">Glorious Women Online Symposium, India</span><span class="when">Mar 2026</span></li>
+          <li><span class="name">Voyage Through the Cosmos Lecture Series</span><span class="when">Mar 2026</span></li>
+          <li><span class="name">Spring Conference on Solid, Astro, Nuclear &amp; Particle Physics</span><span class="when">Apr 2025</span></li>
+          <li><span class="name">RRI Astronomy Summer School, Raman Research Institute</span><span class="when">May–Jul 2025</span></li>
+          <li><span class="name">SRP Seminar Series, IISER Mohali</span><span class="when">May–Jul 2024</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="col-label">Honours &amp; Awards</div>
+        <ul class="list-plain">
+          <li><span class="name">IA Summer Program 2026 — competitive research placement, Instituto de Astrofísica e Ciências do Espaço, Portugal</span><span class="when">Jul 2026</span></li>
+          <li><span class="name">Vigyan Vidushi 2026 (Physics) — national advanced physics programme for women, HBCSE &amp; TIFR</span><span class="when">May–Jun 2026</span></li>
+          <li><span class="name">IASc–INSA–NASI Summer Research Fellow '24</span><span class="when">May–Jul 2024</span></li>
+          <li><span class="name">IISER Aptitude Test 2022 — All India Rank 411 (General Category)</span><span class="when">2022</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box">
+      <h2>Get in touch</h2>
+      <p>Happy to talk about jets, accretion, TDEs, or anything in between — or to share more about my work for PhD or collaboration inquiries.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:sm22ms123@iiserkol.ac.in">sm22ms123@iiserkol.ac.in</a>
+        <a class="btn" href="https://linkedin.com/in/sampriti-mandal-20j" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="Sampriti_Mandal_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sampriti Mandal · Department of Physical Sciences, IISER Kolkata · Last updated July 2026</p>
+</footer>
+
+</body>
+</html>
