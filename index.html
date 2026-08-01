@@ -146,26 +146,13 @@
   .btn.primary{background:var(--maroon); border-color:var(--maroon); color:#FFFBF0; font-weight:500;}
   .btn.primary:hover{border-color:var(--maroon); color:#FFFBF0; opacity:0.88;}
 
-  /* light curve svg — tighter margins, looping animation */
-  .flare-wrap{width:100%; padding:14px 6px 0;}
-  .flare-wrap svg{width:100%; height:auto; display:block;}
-  .flare-caption{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--text-dimmer); margin-top:8px; display:flex; justify-content:space-between;}
-  #flareLine{stroke-dasharray:600; stroke-dashoffset:600; animation:drawLoop 6s ease-in-out infinite;}
-  @keyframes drawLoop{
-    0%{stroke-dashoffset:600;}
-    45%{stroke-dashoffset:0;}
-    75%{stroke-dashoffset:0;}
-    100%{stroke-dashoffset:-600;}
-  }
-  #flareDot{opacity:0; animation:appearLoop 6s ease-in-out infinite;}
-  @keyframes appearLoop{
-    0%,40%{opacity:0;}
-    48%,70%{opacity:1;}
-    80%,100%{opacity:0;}
-  }
-  @media (prefers-reduced-motion: reduce){
-    #flareLine{animation:none; stroke-dashoffset:0;}
-    #flareDot{animation:none; opacity:1;}
+  /* hero portrait photo, framed like a tucked-in print */
+  .hero-photo{width:100%; display:flex; justify-content:center;}
+  .hero-photo img{
+    width:100%; max-width:300px; aspect-ratio:4/5; object-fit:cover;
+    border-radius:12px; border:8px solid #fff;
+    box-shadow:0 16px 36px rgba(60,30,20,0.20);
+    transform:rotate(2.2deg); display:block;
   }
 
   /* ---------- SECTION SHELL ---------- */
@@ -392,17 +379,8 @@
             <a class="btn" href="https://linkedin.com/in/sampriti-mandal-20j" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
-        <div class="flare-wrap" aria-hidden="true">
-          <svg viewBox="0 -8 320 138" fill="none">
-            <line x1="0" y1="108" x2="320" y2="108" stroke="#E8D9A8" stroke-width="1"/>
-            <path id="flareLine" d="M0,104 C10,103 18,105 28,102 C42,97 58,35 82,14 C98,0 112,-2 124,10 C142,28 158,90 182,102 C202,112 220,106 240,104 C260,102 285,104 320,103"
-                  stroke="#4FA8D6" stroke-width="2.2" />
-            <circle id="flareDot" cx="103" cy="4" r="4.5" fill="#7C2620"/>
-          </svg>
-          <div class="flare-caption">
-            <span>FERMI-LAT · 18-YR LIGHT CURVE</span>
-            <span>γ-RAY FLARE</span>
-          </div>
+        <div class="hero-photo">
+          <img src="sampriti_photo.jpg" alt="Portrait of Sampriti Mandal">
         </div>
       </div>
     </div>
@@ -450,7 +428,7 @@
               <div class="t-title">Little Red Dots as Delayed Choked-Jet Tidal Disruption Events</div>
               <div class="t-sup">Supervised by Prof. Mukul Bhattacharya, DAASE, IIT Indore</div>
               <div class="t-desc">Investigating whether Little Red Dots — a population of compact, high-redshift (z ≈ 4–8) JWST sources with debated physical origin — can be explained within the delayed choked-jet TDE framework. Built a dynamical jet-cocoon-debris model to determine when a jet breaks out versus stays trapped, as a function of black hole mass, jet luminosity, and launch delay. Predicted high-energy neutrino and forward/reverse-shock synchrotron signatures and tested detectability against IceCube, JWST/NIRCam, VLA, ALMA, and Chandra sensitivities.</div>
-              <a class="report-link" href="https://drive.google.com/file/d/1aZo3lYEJwozMng1vC2kjKwd34-Evuvbr/view?usp=sharing">View Report <span class="arrow">→</span></a>
+              <a class="report-link" href="#">View Report <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -466,7 +444,7 @@
               <div class="t-title">Study of Martian Atmospheres: Winds and Wave Characterization</div>
               <div class="t-sup">Supervised by Pedro Machado, Francisco Brasil, João Dias — Instituto de Astrofísica e Ciências do Espaço, Lisbon</div>
               <div class="t-desc">Worked on the Mars component of a joint Venus–Mars atmospheric gravity wave study using OMEGA/Mars Express spectral cube data and HRSC imagery. Used omegapy and QGIS to detect and characterize wave packets and background wind fields from cloud tracking. Contributed to a group presentation on morphological characterization and wind-speed measurements.</div>
-              <a class="report-link" href="https://docs.google.com/presentation/d/1PxZlbRUgCkEMDDnJzz6tC83erGHbeZ6LJQfsXIiYN1Q/edit?usp=sharing">View Slides <span class="arrow">→</span></a>
+              <a class="report-link" href="#">View Report <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -482,7 +460,7 @@
               <div class="t-title">General Relativistic Hydrodynamic Simulation Code</div>
               <div class="t-sup">Supervised by Dr. Sudip K. Garain, CESSI, IISER Kolkata</div>
               <div class="t-desc">Solved the relativistic hydrodynamic equations analytically for an ideal equation of state, and implemented the conserved-to-primitive variable conversion (D, S_j, τ → ρ, v_j, P) in code. Developed a GRHD code for studying advective, sub-Keplerian accretion flow onto black holes for different equations of state.</div>
-              <a class="report-link" href="https://drive.google.com/file/d/1p6YnxzOh0JthkH6yuz-lroq2-cteBLae/view?usp=sharing">View Report <span class="arrow">→</span></a>
+              <a class="report-link" href="#">View Report <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -498,7 +476,7 @@
               <div class="t-title">Roche Potential and Roche Mass Transfer</div>
               <div class="t-sup">Supervised by Dr. Sudip K. Garain, CESSI, IISER Kolkata</div>
               <div class="t-desc">Derived the equations of motion for a test mass in a binary star system and simulated its trajectory using RK45 integration in Python, analyzing the stable and unstable Lagrange equilibrium points.</div>
-              <a class="report-link" href="https://drive.google.com/file/d/1FOTMNzGqiGNbMA7aeNX5x8hy_wNvqUVz/view?usp=sharing">View Report <span class="arrow">→</span></a>
+              <a class="report-link" href="#">View Report <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -514,7 +492,7 @@
               <div class="t-title">Beam Shaping using SLM</div>
               <div class="t-sup">Supervised by Dr. Arijit De, IISER Mohali</div>
               <div class="t-desc">Engineered an experiment to modify a laser's spatial profile using a Spatial Light Modulator, generating an Airy-Gaussian beam from a Gaussian laser source. Worked with a 1920×1152 liquid crystal on silicon SLM and aligned precision optical components.</div>
-              <a class="report-link" href="https://drive.google.com/file/d/1L3-9MxLwBCkle8_GipsF32oiR8OPIguw/view?usp=sharing">View Report <span class="arrow">→</span></a>
+              <a class="report-link" href="#">View Report <span class="arrow">→</span></a>
             </div>
           </div>
         </div>
@@ -548,7 +526,7 @@
               <li>Performed quantitative morphological classification of NGC 2967 (Sc), NGC 3351 (SBb), and NGC 3379 (E1) using SDSS DR17 g, r, i imaging — combining surface brightness profile fitting, CAS parameters, isophote analysis, and Fourier structural decomposition; all eleven diagnostics consistently classified the three galaxies.</li>
               <li>Developed 2D FFT and radial (annular) Fourier analysis routines; performed correlation and statistical analysis across diagnostics; implemented the radial structural decomposition and final morphological classification summary; co-drafted the manuscript.</li>
             </ul>
-            <a class="report-link" href="https://drive.google.com/file/d/1S5zh3QmIj9Tc90jgt7elg1Xyl2lFaYab/view?usp=drivesdk">View Report <span class="arrow">→</span></a>
+            <a class="report-link" href="#">View Report <span class="arrow">→</span></a>
           </div>
         </div>
       </div>
